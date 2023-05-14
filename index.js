@@ -44,7 +44,7 @@ app.post("/generate-files", async (req, res) => {
     }
 
     // Create a zip file containing the generated files
-    const zipFile = "/tmp/generated_files.zip";
+    const zipFile = "./generated_files.zip";
     const archive = archiver("zip", { zlib: { level: 9 } });
     archive.pipe(fs.createWriteStream(zipFile));
     files.forEach((file) => {
@@ -67,7 +67,7 @@ app.post("/generate-files", async (req, res) => {
 });
 
 // Download file
-app.get("/download", (req, res) => res.download("./tmp/generated_files.zip"));
+app.get("/download", (req, res) => res.download("./generated_files.zip"));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
